@@ -1,6 +1,6 @@
 # FCC Game of Life
 
-This a project using React to build Conway's Game of Life.
+This is a project using React to build Conway's Game of Life.
 
 Requirements:
 
