@@ -4,7 +4,7 @@ This is a project using React to build Conway's Game of Life.
 
 Requirements:
 
-1. The "game" can to started and stopped
+1. The "game" can be started and stopped
 
 2. The "game" board can be set up
 
