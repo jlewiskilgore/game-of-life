@@ -8,7 +8,7 @@ class GenerationCounter extends Component {
 	render() {
 		return (
 			<div id="generation-counter">
-			  <p>Current Generation: 0</p>
+			  <p>Current Generation: {this.props.currentGeneration} </p>
 			</div>
 		);
 	}

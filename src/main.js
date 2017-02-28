@@ -8,12 +8,14 @@ import './App.sass';
 class App extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = { generation: 0 };
 	}
 
 	render() {
 		return (
 		  <div>
-		  	<GenerationCounter />
+		  	<GenerationCounter currentGeneration={this.state.generation} />
 		  	<ControlPanel />
 		    <GameBoard />
 		  </div>
