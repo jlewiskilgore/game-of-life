@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
-class GameBoard extends Component {
+class Cell extends Component {
 	constructor(props) {
 		super(props);
 	}
 
 	render() {
 		return (
-			<div id="game-board">
-			  <p>Game Board Goes Here...</p>
+			<div id="board-cell">
+			  <p>Single Board Cell</p>
 			</div>
 		);
 	}
 }
 
-export default GameBoard;
+export default Cell;

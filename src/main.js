@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import ControlPanel from './components/ControlPanel';
 import GameBoard from './components/GameBoard';
+import GenerationCounter from './components/GenerationCounter';
 import './App.sass';
 
 class App extends Component {
@@ -11,6 +13,8 @@ class App extends Component {
 	render() {
 		return (
 		  <div>
+		  	<GenerationCounter />
+		  	<ControlPanel />
 		    <GameBoard />
 		  </div>
 		);
