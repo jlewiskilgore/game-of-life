@@ -21,11 +21,21 @@ class Cell extends Component {
 	}
 
 	render() {
-		return (
-			<div id="board-cell">
-			  <input type="button" onClick={this.toggleAlive} />
-			</div>
-		);
+
+		if(this.state.isAlive == true) {
+			return (
+				<div id="board-cell">
+				  <input className="alive" type="button" onClick={this.toggleAlive} />
+				</div>
+			);
+		}
+		else if(this.state.isAlive == false) {
+			return (
+				<div id="board-cell">
+				  <input className="notAlive" type="button" onClick={this.toggleAlive} />
+				</div>
+			);
+		}
 	}
 }
 
