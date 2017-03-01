@@ -5,10 +5,14 @@ class Cell extends Component {
 		super(props);
 	}
 
+	toggleAlive() {
+		console.log("toggle alive function");
+	}
+
 	render() {
 		return (
 			<div id="board-cell">
-			  <p>Single Board Cell</p>
+			  <input type="button" onClick={this.toggleAlive} />
 			</div>
 		);
 	}
