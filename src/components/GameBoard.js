@@ -9,12 +9,16 @@ class GameBoard extends Component {
 	render() {
 		return (
 			<div id="game-board">
-			  <p>Game Board Goes Here...</p>
-			  <Cell />
-			  <Cell />
-			  <Cell />
-			  <Cell />
-			  <Cell />
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
 			</div>
 		);
 	}

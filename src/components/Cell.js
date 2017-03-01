@@ -3,10 +3,21 @@ import React, { Component } from 'react';
 class Cell extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = { isAlive: false };
+
+		this.toggleAlive = this.toggleAlive.bind(this);
 	}
 
 	toggleAlive() {
-		console.log("toggle alive function");
+		if(this.state.isAlive == true) {
+			this.setState({ isAlive: false });
+			console.log("cell is now dead");
+		}
+		else {
+			this.setState({ isAlive: true });
+			console.log("cell is now alive");
+		}
 	}
 
 	render() {
