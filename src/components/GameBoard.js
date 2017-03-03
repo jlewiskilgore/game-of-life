@@ -7,11 +7,13 @@ class GameBoard extends Component {
 
 		var initialBoardState = [];
 		var boardRowAliveState;
+		var randStartingCellState;
 
 		for(var i=0; i<this.props.numOfRows; i++) {
 			boardRowAliveState = [];
 			for(var j=0; j<this.props.numOfCols; j++) {
-				boardRowAliveState.push(false);
+				randStartingCellState = Math.random() >= 0.5;
+				boardRowAliveState.push(randStartingCellState);
 			}
 			initialBoardState.push(boardRowAliveState);
 		}
