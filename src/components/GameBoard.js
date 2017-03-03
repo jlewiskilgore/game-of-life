@@ -9,8 +9,8 @@ class GameBoard extends Component {
 	render() {
 		var boardRow;
 		var gameBoard = [];
-		var numRows = 10;
-		var numCols = 10;
+		var numRows = this.props.numOfRows;
+		var numCols = this.props.numOfCols;
 
 		for(var i=0; i<10; i++) {
 			boardRow = [];

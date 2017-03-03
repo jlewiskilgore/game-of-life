@@ -17,7 +17,7 @@ class App extends Component {
 		  <div>
 		  	<GenerationCounter currentGeneration={this.state.generation} />
 		  	<ControlPanel />
-		    <GameBoard />
+		    <GameBoard numOfRows={10} numOfCols={10} />
 		  </div>
 		);
 	}
