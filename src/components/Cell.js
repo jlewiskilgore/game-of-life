@@ -4,7 +4,7 @@ class Cell extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { isAlive: false };
+		this.state = { isAlive: this.props.aliveState };
 
 		this.toggleAlive = this.toggleAlive.bind(this);
 	}
@@ -13,17 +13,17 @@ class Cell extends Component {
 		if(this.state.isAlive == true) {
 			this.setState({ isAlive: false });
 			console.log("cell is now dead");
-			console.log(this.props.rowNum + " " + this.props.colNum);
+			this.props.updateState(this.props.rowNum, this.props.colNum, this.state.isAlive);
 		}
 		else {
 			this.setState({ isAlive: true });
 			console.log("cell is now alive");
 			console.log(this.props.rowNum + " " + this.props.colNum);
+			this.props.updateState(this.props.rowNum, this.props.colNum, this.state.isAlive);
 		}
 	}
 
-	render() {
-
+	render(){
 		if(this.state.isAlive == true) {
 			return (
 				<div id="board-cell">
