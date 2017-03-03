@@ -7,18 +7,22 @@ class GameBoard extends Component {
 	}
 
 	render() {
+		var boardRow;
+		var gameBoard = [];
+		var numRows = 10;
+		var numCols = 10;
+
+		for(var i=0; i<10; i++) {
+			boardRow = [];
+			for(var j=0; j<10; j++) {
+				boardRow.push(<Cell rowNum={i} colNum={j} />);
+			}
+			gameBoard.push(<div id="board-row">{boardRow}</div>);
+		}
+
 		return (
 			<div id="game-board">
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
-			  <div id="board-row"><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /><Cell /></div>
+			  {gameBoard}
 			</div>
 		);
 	}

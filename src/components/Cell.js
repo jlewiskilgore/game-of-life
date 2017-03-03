@@ -13,10 +13,12 @@ class Cell extends Component {
 		if(this.state.isAlive == true) {
 			this.setState({ isAlive: false });
 			console.log("cell is now dead");
+			console.log(this.props.rowNum + " " + this.props.colNum);
 		}
 		else {
 			this.setState({ isAlive: true });
 			console.log("cell is now alive");
+			console.log(this.props.rowNum + " " + this.props.colNum);
 		}
 	}
 
