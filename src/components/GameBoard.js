@@ -79,23 +79,43 @@ class GameBoard extends Component {
 		}
 		//If on first row, no row above
 		else if(cellRow == 0) {
-			numNeighborsAlive = currentBoard[cellRow][cellCol];
+			console.log("first row, non corner");
+			numNeighborsAlive = currentBoard[cellRow][cellCol-1]
+							  + currentBoard[cellRow][cellCol+1]
+							  + currentBoard[cellRow+1][cellCol-1]
+							  + currentBoard[cellRow+1][cellCol]
+							  + currentBoard[cellRow+1][cellCol+1];
 		}
 		//If on left most column, no column to left
 		else if(cellCol == 0) {
-
+			console.log("first column, non corner");
+			numNeighborsAlive = currentBoard[cellRow-1][cellCol]
+							  + currentBoard[cellRow+1][cellCol]
+							  + currentBoard[cellRow-1][cellCol+1]
+							  + currentBoard[cellRow][cellCol+1]
+							  + currentBoard[cellRow+1][cellCol+1];
 		}
 		//If on last row, no row below
-		else if(cellRow == this.props.numOfRows) {
-
+		else if(cellRow == (this.props.numOfRows - 1)) {
+			console.log("last row, non corner");
+			numNeighborsAlive = currentBoard[cellRow-1][cellCol-1]
+							  + currentBoard[cellRow-1][cellCol]
+							  + currentBoard[cellRow-1][cellCol+1]
+							  + currentBoard[cellRow][cellCol-1]
+							  + currentBoard[cellRow][cellCol+1];
 		}
 		//If on right most column, no column to right
-		else if(cellCol == this.props.numOfCols) {
-
+		else if(cellCol == (this.props.numOfCols - 1)) {
+			console.log("last column, non corner");
+			numNeighborsAlive = currentBoard[cellRow-1][cellCol]
+							  + currentBoard[cellRow+1][cellCol]
+							  + currentBoard[cellRow-1][cellCol-1]
+							  + currentBoard[cellRow][cellCol-1]
+							  + currentBoard[cellRow+1][cellCol-1];
 		}
 		//Interior cells
 		else {
-
+			console.log("interior");
 		}
 
 		console.log(numNeighborsAlive);
