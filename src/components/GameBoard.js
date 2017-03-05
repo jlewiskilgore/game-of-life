@@ -116,6 +116,14 @@ class GameBoard extends Component {
 		//Interior cells
 		else {
 			console.log("interior");
+			numNeighborsAlive = currentBoard[cellRow-1][cellCol-1]
+							  + currentBoard[cellRow-1][cellCol]
+							  + currentBoard[cellRow-1][cellCol+1]
+							  + currentBoard[cellRow][cellCol-1]
+							  + currentBoard[cellRow][cellCol+1]
+							  + currentBoard[cellRow+1][cellCol-1]
+							  + currentBoard[cellRow+1][cellCol]
+							  + currentBoard[cellRow+1][cellCol+1];
 		}
 
 		console.log(numNeighborsAlive);
