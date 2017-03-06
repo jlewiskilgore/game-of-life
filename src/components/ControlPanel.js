@@ -3,10 +3,13 @@ import React, { Component } from 'react';
 class ControlPanel extends Component {
 	constructor(props) {
 		super(props);
+
+		this.startSimulation = this.startSimulation.bind(this);
 	}
 
 	startSimulation() {
 		console.log("starting...");
+		this.props.startGame();
 	}
 
 	stopSimulation() {

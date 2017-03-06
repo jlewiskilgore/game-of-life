@@ -40,46 +40,78 @@ class GameBoard extends Component {
 	}
 
 	getNextGenerationCellValues() {
+		var currentBoard = this.state.currentBoardState;
+		var nextBoard = this.state.currentBoardState;
+		var liveNeighborCount;
 
+		for(var i=0; i<this.props.numOfRows; i++) {
+			for(var j=0; j<this.props.numOfCols; j++) {
+
+				liveNeighborCount = getAliveNeighborCount(i, j);
+
+				if(currentBoard[i][j] == 1) {
+				// If a live cell has fewer than 2 live neighbors, it dies
+					if(liveNeighborCount < 2) {
+						nextBoard[i][j] = 0;
+					}
+				// If a live cell has 2 or 3 live neighbors, it lives
+					else if(liveNeighborCount >=2 && liveNeighborCount <=3) {
+						nextBoard[i][j] = 1;
+					}
+				// If a live cell has more than 3 live neighbors, it dies
+					else if(liveNeighborCount > 3) {
+						nextBoard[i][j] = 0;
+					}
+				}
+				else if(currentBoard[i][j] == 0) {
+				// If a dead cell has 3 live neighbors, it becomes alive
+					if(liveNeighborCount == 3) {
+						nextBoard[i][j] = 1;
+					}
+				}
+			}
+		}
+
+		this.setState({ currentBoardState: nextBoard });
 	}
 
 	getAliveNeighborCount(cellRow, cellCol) {
 		var currentBoard = this.state.currentBoardState;
 		//console.log(currentBoard);
 		var numNeighborsAlive = 0;
-		console.log("r: " + cellRow + ", c: " + cellCol);
+		//console.log("r: " + cellRow + ", c: " + cellCol);
 
 		//Top left corner, no row above and no column to left
 		if(cellRow == 0 && cellCol == 0) {
-			console.log("top left corner");
+			//console.log("top left corner");
 			numNeighborsAlive = currentBoard[cellRow][cellCol+1]
 							  + currentBoard[cellRow+1][cellCol]
 							  + currentBoard[cellRow+1][cellCol+1];
 		}
 		//Top right corner, no row above and no column to right
 		else if(cellRow == 0 && cellCol == (this.props.numOfCols - 1)) {
-			console.log("top right corner");
+			//console.log("top right corner");
 			numNeighborsAlive = currentBoard[cellRow][cellCol-1]
 							  + currentBoard[cellRow+1][cellCol-1]
 							  + currentBoard[cellRow+1][cellCol];
 		}
 		//Bottom left corner, no row below and no column to left
 		else if(cellRow == (this.props.numOfRows - 1) && cellCol == 0) {
-			console.log("bottom left corner");
+			//console.log("bottom left corner");
 			numNeighborsAlive = currentBoard[cellRow][cellCol+1]
 							  + currentBoard[cellRow-1][cellCol]
 							  + currentBoard[cellRow-1][cellCol+1];
 		}
 		//Bottom right corner, no row below and no column to right
 		else if(cellRow == (this.props.numOfRows - 1) && cellCol == (this.props.numOfCols - 1)) {
-			console.log("bottom right corner");
+			//console.log("bottom right corner");
 			numNeighborsAlive = currentBoard[cellRow][cellCol-1]
 							  + currentBoard[cellRow-1][cellCol]
 							  + currentBoard[cellRow-1][cellCol-1];
 		}
 		//If on first row, no row above
 		else if(cellRow == 0) {
-			console.log("first row, non corner");
+			//console.log("first row, non corner");
 			numNeighborsAlive = currentBoard[cellRow][cellCol-1]
 							  + currentBoard[cellRow][cellCol+1]
 							  + currentBoard[cellRow+1][cellCol-1]
@@ -88,7 +120,7 @@ class GameBoard extends Component {
 		}
 		//If on left most column, no column to left
 		else if(cellCol == 0) {
-			console.log("first column, non corner");
+			//console.log("first column, non corner");
 			numNeighborsAlive = currentBoard[cellRow-1][cellCol]
 							  + currentBoard[cellRow+1][cellCol]
 							  + currentBoard[cellRow-1][cellCol+1]
@@ -97,7 +129,7 @@ class GameBoard extends Component {
 		}
 		//If on last row, no row below
 		else if(cellRow == (this.props.numOfRows - 1)) {
-			console.log("last row, non corner");
+			//console.log("last row, non corner");
 			numNeighborsAlive = currentBoard[cellRow-1][cellCol-1]
 							  + currentBoard[cellRow-1][cellCol]
 							  + currentBoard[cellRow-1][cellCol+1]
@@ -106,7 +138,7 @@ class GameBoard extends Component {
 		}
 		//If on right most column, no column to right
 		else if(cellCol == (this.props.numOfCols - 1)) {
-			console.log("last column, non corner");
+			//console.log("last column, non corner");
 			numNeighborsAlive = currentBoard[cellRow-1][cellCol]
 							  + currentBoard[cellRow+1][cellCol]
 							  + currentBoard[cellRow-1][cellCol-1]
@@ -115,7 +147,7 @@ class GameBoard extends Component {
 		}
 		//Interior cells
 		else {
-			console.log("interior");
+			//console.log("interior");
 			numNeighborsAlive = currentBoard[cellRow-1][cellCol-1]
 							  + currentBoard[cellRow-1][cellCol]
 							  + currentBoard[cellRow-1][cellCol+1]
@@ -126,8 +158,12 @@ class GameBoard extends Component {
 							  + currentBoard[cellRow+1][cellCol+1];
 		}
 
-		console.log(numNeighborsAlive);
+		//console.log(numNeighborsAlive);
+		return numNeighborsAlive;
+	}
 
+	runSimulationLoop() {
+		console.log("run sim");
 	}
 
 	render() {

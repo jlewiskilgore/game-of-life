@@ -10,13 +10,32 @@ class App extends Component {
 		super(props);
 
 		this.state = { generation: 0 };
+
+		this.incrementGeneration = this.incrementGeneration.bind(this);
+		this.runGameLoop = this.runGameLoop.bind(this);
+	}
+
+	incrementGeneration() {
+		var currentGen = this.state.generation;
+		var nextGen = currentGen+1;
+		
+		this.setState({ generation: nextGen });
+	}
+
+	runGameLoop() {
+		var currentGen = this.state.generation;
+
+		if(currentGen < 10) {
+			this.incrementGeneration();
+			setTimeout( this.runGameLoop, 1000);
+		}
 	}
 
 	render() {
 		return (
 		  <div>
 		  	<GenerationCounter currentGeneration={this.state.generation} />
-		  	<ControlPanel />
+		  	<ControlPanel startGame={this.runGameLoop} />
 		    <GameBoard numOfRows={10} numOfCols={10} />
 		  </div>
 		);
