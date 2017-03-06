@@ -24,7 +24,9 @@ class GameBoard extends Component {
 			initialBoardState.push(boardRowAliveState);
 		}
 
-		this.state = { currentBoardState: initialBoardState, nextBoardState: [] }
+		this.state = { currentBoardState: initialBoardState, nextBoardState: initialBoardState };
+
+		console.log(initialBoardState);
 
 		this.updateBoardState = this.updateBoardState.bind(this);
 		this.getNextGenerationCellValues = this.getNextGenerationCellValues.bind(this);
@@ -32,7 +34,7 @@ class GameBoard extends Component {
 	}
 
 	updateBoardState(cellRow, cellCol, newStateValue) {
-		//console.log("updating board state...");
+		console.log("updating board state...");
 		var updatedBoard = this.state.currentBoardState;
 		updatedBoard[cellRow][cellCol] = newStateValue;
 
@@ -40,39 +42,51 @@ class GameBoard extends Component {
 	}
 
 	getNextGenerationCellValues() {
+		console.log("getting next gen values...");
 		var currentBoard = this.state.currentBoardState;
-		var nextBoard = this.state.currentBoardState;
+		var nextBoard = this.state.nextBoardState;
 		var liveNeighborCount;
 
 		for(var i=0; i<this.props.numOfRows; i++) {
 			for(var j=0; j<this.props.numOfCols; j++) {
 
-				liveNeighborCount = getAliveNeighborCount(i, j);
+				liveNeighborCount = this.getAliveNeighborCount(i, j);
+				
+				//console.log("curr value: " + currentBoard[i][j]);
+				//console.log("neighbor count: " + liveNeighborCount);
 
 				if(currentBoard[i][j] == 1) {
 				// If a live cell has fewer than 2 live neighbors, it dies
 					if(liveNeighborCount < 2) {
+						//console.log("alive to dead");
 						nextBoard[i][j] = 0;
 					}
 				// If a live cell has 2 or 3 live neighbors, it lives
-					else if(liveNeighborCount >=2 && liveNeighborCount <=3) {
+					else if(liveNeighborCount ==2 || liveNeighborCount ==3) {
+						//console.log("alive stays alive");
 						nextBoard[i][j] = 1;
 					}
 				// If a live cell has more than 3 live neighbors, it dies
 					else if(liveNeighborCount > 3) {
+						//console.log("alive to dead");
 						nextBoard[i][j] = 0;
 					}
 				}
 				else if(currentBoard[i][j] == 0) {
 				// If a dead cell has 3 live neighbors, it becomes alive
 					if(liveNeighborCount == 3) {
+						//console.log("dead to alive");
 						nextBoard[i][j] = 1;
+					}
+					else {
+						//console.log("dead stays dead");
+						nextBoard[i][j] = 0;
 					}
 				}
 			}
 		}
 
-		this.setState({ currentBoardState: nextBoard });
+		this.setState({ currentBoardState: nextBoard, nextBoardState: nextBoard });
 	}
 
 	getAliveNeighborCount(cellRow, cellCol) {
@@ -167,6 +181,9 @@ class GameBoard extends Component {
 	}
 
 	render() {
+		console.log("render game board");
+		console.log(this.state.currentBoardState);
+
 		var boardRow;
 		var boardRowAliveState;
 		var gameBoard = [];

@@ -25,9 +25,10 @@ class App extends Component {
 	runGameLoop() {
 		var currentGen = this.state.generation;
 
-		if(currentGen < 10) {
+		if(currentGen < 500) {
 			this.incrementGeneration();
-			setTimeout( this.runGameLoop, 1000);
+			this.refs.gameBoard.getNextGenerationCellValues();
+			setTimeout( this.runGameLoop, 200);
 		}
 	}
 
@@ -36,7 +37,7 @@ class App extends Component {
 		  <div>
 		  	<GenerationCounter currentGeneration={this.state.generation} />
 		  	<ControlPanel startGame={this.runGameLoop} />
-		    <GameBoard numOfRows={10} numOfCols={10} />
+		    <GameBoard ref="gameBoard" numOfRows={20} numOfCols={20} />
 		  </div>
 		);
 	}

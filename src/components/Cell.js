@@ -26,6 +26,11 @@ class Cell extends Component {
 	}
 
 	render(){
+		// Check if cell needs to be rendered with an updated value
+		if(this.state.isAlive != this.props.aliveState) {
+			this.setState({ isAlive: this.props.aliveState });
+		}
+
 		if(this.state.isAlive == 1) {
 			return (
 				<div id="board-cell">
