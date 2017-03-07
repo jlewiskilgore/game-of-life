@@ -27,10 +27,10 @@ class App extends Component {
 		var currentGen = this.state.generation;
 		var isPaused = this.state.pauseState;
 
-		if(currentGen < 500 && isPaused == false) {
+		if(currentGen < 1000 && isPaused == false) {
 			this.incrementGeneration();
 			this.refs.gameBoard.getNextGenerationCellValues();
-			setTimeout( this.runGameLoop, 200);
+			setTimeout( this.runGameLoop, 50);
 		}
 	}
 
@@ -53,7 +53,7 @@ class App extends Component {
 		  <div>
 		  	<GenerationCounter currentGeneration={this.state.generation} />
 		  	<ControlPanel startGame={this.runGameLoop} pauseGame={this.pauseGameLoop} />
-		    <GameBoard ref="gameBoard" numOfRows={20} numOfCols={20} />
+		    <GameBoard ref="gameBoard" numOfRows={35} numOfCols={65} />
 		  </div>
 		);
 	}
