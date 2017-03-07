@@ -5,6 +5,7 @@ class ControlPanel extends Component {
 		super(props);
 
 		this.startSimulation = this.startSimulation.bind(this);
+		this.pauseSimulation = this.pauseSimulation.bind(this);
 	}
 
 	startSimulation() {
@@ -12,15 +13,16 @@ class ControlPanel extends Component {
 		this.props.startGame();
 	}
 
-	stopSimulation() {
-		console.log("stopping...");
+	pauseSimulation() {
+		console.log("pausing...");
+		this.props.pauseGame();
 	}
 
 	render() {
 		return (
 			<div id="control-panel">
 			  <input type="button" value="Start" onClick={this.startSimulation} />
-			  <input type="button" value="Stop" onClick={this.stopSimulation} />
+			  <input type="button" value="Pause" onClick={this.pauseSimulation} />
 			</div>
 		);
 	}
