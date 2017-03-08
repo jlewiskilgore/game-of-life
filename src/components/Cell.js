@@ -25,12 +25,14 @@ class Cell extends Component {
 		this.props.countAliveNeighbors(this.props.rowNum, this.props.colNum);
 	}
 
-	render(){
+	componentWillUpdate() {
 		// Check if cell needs to be rendered with an updated value
 		if(this.state.isAlive != this.props.aliveState) {
 			this.setState({ isAlive: this.props.aliveState });
 		}
+	}
 
+	render(){
 		if(this.state.isAlive == 1) {
 			return (
 				<div id="board-cell">

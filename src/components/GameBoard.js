@@ -12,7 +12,7 @@ class GameBoard extends Component {
 		for(var i=0; i<this.props.numOfRows; i++) {
 			boardRowAliveState = [];
 			for(var j=0; j<this.props.numOfCols; j++) {
-				randStartingCellState = Math.random() >= 0.9;
+				randStartingCellState = Math.random() >= 0.1;
 				if(randStartingCellState == true) {
 					randStartingCellState = 1;
 				}
@@ -26,7 +26,7 @@ class GameBoard extends Component {
 
 		this.state = { currentBoardState: initialBoardState, nextBoardState: initialBoardState };
 
-		console.log(initialBoardState);
+		//console.log(initialBoardState);
 
 		this.updateBoardState = this.updateBoardState.bind(this);
 		this.getNextGenerationCellValues = this.getNextGenerationCellValues.bind(this);
@@ -86,7 +86,7 @@ class GameBoard extends Component {
 			}
 		}
 
-		this.setState({ currentBoardState: nextBoard, nextBoardState: nextBoard });
+		this.setState({ currentBoardState: nextBoard });
 	}
 
 	getAliveNeighborCount(cellRow, cellCol) {
@@ -182,7 +182,7 @@ class GameBoard extends Component {
 
 	render() {
 		console.log("render game board");
-		console.log(this.state.currentBoardState);
+		//console.log(this.state.currentBoardState);
 
 		var boardRow;
 		var boardRowAliveState;
