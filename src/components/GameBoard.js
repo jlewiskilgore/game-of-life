@@ -12,7 +12,7 @@ class GameBoard extends Component {
 		for(var i=0; i<this.props.numOfRows; i++) {
 			boardRowAliveState = [];
 			for(var j=0; j<this.props.numOfCols; j++) {
-				randStartingCellState = Math.random() >= 0.1;
+				randStartingCellState = Math.random() >= 0.9;
 				if(randStartingCellState == true) {
 					randStartingCellState = 1;
 				}
@@ -31,6 +31,7 @@ class GameBoard extends Component {
 		this.updateBoardState = this.updateBoardState.bind(this);
 		this.getNextGenerationCellValues = this.getNextGenerationCellValues.bind(this);
 		this.getAliveNeighborCount = this.getAliveNeighborCount.bind(this);
+		this.clearGameBoard = this.clearGameBoard.bind(this);
 	}
 
 	updateBoardState(cellRow, cellCol, newStateValue) {
@@ -42,7 +43,6 @@ class GameBoard extends Component {
 	}
 
 	getNextGenerationCellValues() {
-		console.log("getting next gen values...");
 		var currentBoard = this.state.currentBoardState;
 		var nextBoard = this.state.nextBoardState;
 		var liveNeighborCount;
@@ -176,14 +176,23 @@ class GameBoard extends Component {
 		return numNeighborsAlive;
 	}
 
-	runSimulationLoop() {
-		console.log("run sim");
+	clearGameBoard() {
+		var clearBoardState = [];
+		var currentBoard = this.state.currentBoardState;
+		var boardRowAliveState;
+
+		for(var i=0; i<this.props.numOfRows; i++) {
+			boardRowAliveState = [];
+			for(var j=0; j<this.props.numOfCols; j++) {
+				boardRowAliveState.push(0);
+			}
+			clearBoardState.push(boardRowAliveState);
+		}
+
+		this.setState({ currentBoardState: clearBoardState });
 	}
 
 	render() {
-		console.log("render game board");
-		//console.log(this.state.currentBoardState);
-
 		var boardRow;
 		var boardRowAliveState;
 		var gameBoard = [];
@@ -197,7 +206,7 @@ class GameBoard extends Component {
 				boardRow.push(<Cell rowNum={i} colNum={j} updateState={this.updateBoardState} 
 					aliveState={this.state.currentBoardState[i][j]} countAliveNeighbors={this.getAliveNeighborCount} />);
 			}
-			gameBoard.push(<div id="board-row">{boardRow}</div>);
+			gameBoard.push(<div className="board-row">{boardRow}</div>);
 		}
 
 		return (

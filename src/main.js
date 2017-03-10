@@ -9,11 +9,12 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { generation: 0, pauseState: false };
+		this.state = { generation: 0, pauseState: false, isRunning: false };
 
 		this.incrementGeneration = this.incrementGeneration.bind(this);
 		this.runGameLoop = this.runGameLoop.bind(this);
 		this.pauseGameLoop = this.pauseGameLoop.bind(this);
+		this.clearGameBoard = this.clearGameBoard.bind(this);
 	}
 
 	incrementGeneration() {
@@ -32,27 +33,35 @@ class App extends Component {
 			this.refs.gameBoard.getNextGenerationCellValues();
 			setTimeout( this.runGameLoop, 50);
 		}
+		// If game is current paused, pressing start again will unpause and run
+		else if(isPaused == true) {
+			this.pauseGameLoop();
+		}
+
+		this.setState({ isRunning: true });
 	}
 
 	pauseGameLoop() {
 		var isPaused = this.state.pauseState;
-		console.log("is game paused? " + isPaused);
 
 		if(isPaused == true) {
-			console.log("game is now unpaused...");
 			this.setState({ pauseState: false });
 		}
 		else if(isPaused == false) {
-			console.log("game is now paused...");
 			this.setState({ pauseState: true });
 		}
+	}
+
+	clearGameBoard() {
+		console.log("main clearboard");
+		this.refs.gameBoard.clearGameBoard();
 	}
 
 	render() {
 		return (
 		  <div>
 		  	<GenerationCounter currentGeneration={this.state.generation} />
-		  	<ControlPanel startGame={this.runGameLoop} pauseGame={this.pauseGameLoop} />
+		  	<ControlPanel startGame={this.runGameLoop} pauseGame={this.pauseGameLoop} clearGameBoard={this.clearGameBoard} isRunning={this.state.isRunning} />
 		    <GameBoard ref="gameBoard" numOfRows={35} numOfCols={65} />
 		  </div>
 		);
