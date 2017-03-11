@@ -20,9 +20,6 @@ class Cell extends Component {
 			console.log("cell is now alive");
 			this.props.updateState(this.props.rowNum, this.props.colNum, 1);
 		}
-
-		// For testing neighbor count
-		//this.props.countAliveNeighbors(this.props.rowNum, this.props.colNum);
 	}
 
 	componentWillUpdate() {
