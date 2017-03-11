@@ -189,7 +189,7 @@ class GameBoard extends Component {
 			clearBoardState.push(boardRowAliveState);
 		}
 
-		this.setState({ currentBoardState: clearBoardState });
+		this.setState({ currentBoardState: clearBoardState }, function() { this.forceUpdate() });
 	}
 
 	render() {
