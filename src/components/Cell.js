@@ -10,14 +10,14 @@ class Cell extends Component {
 	}
 
 	toggleAlive() {
+		// Change live cell to dead
 		if(this.state.isAlive == 1) {
 			this.setState({ isAlive: 0 });
-			console.log("cell is now dead");
 			this.props.updateState(this.props.rowNum, this.props.colNum, 0);
 		}
+		// Change dead cell to live
 		else {
 			this.setState({ isAlive: 1 });
-			console.log("cell is now alive");
 			this.props.updateState(this.props.rowNum, this.props.colNum, 1);
 		}
 	}

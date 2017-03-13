@@ -31,7 +31,7 @@ class App extends Component {
 		if(currentGen < 1000 && isPaused == false) {
 			this.incrementGeneration();
 			this.refs.gameBoard.getNextGenerationCellValues();
-			setTimeout( this.runGameLoop, 50);
+			setTimeout( this.runGameLoop, 10);
 		}
 		// If game is current paused, pressing start again will unpause and run
 		else if(isPaused == true) {
@@ -53,7 +53,6 @@ class App extends Component {
 	}
 
 	clearGameBoard() {
-		console.log("main clearboard");
 		this.refs.gameBoard.clearGameBoard();
 	}
 

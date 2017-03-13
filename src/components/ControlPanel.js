@@ -10,25 +10,18 @@ class ControlPanel extends Component {
 	}
 
 	startSimulation() {
-		console.log("starting...");
-		if(this.props.isRunning == false) {
-			//this.props.isRunning = true;
-		}
-
 		this.props.startGame();
 		document.getElementById("start-button").disabled = true;
 		document.getElementById("pause-button").disabled = false;
 	}
 
 	pauseSimulation() {
-		console.log("pausing...");
 		this.props.pauseGame();
 		document.getElementById("start-button").disabled = false;
 		document.getElementById("pause-button").disabled = true;
 	}
 
 	clearBoard() {
-		console.log("clearing board...");
 		this.props.clearGameBoard();
 	}
 
